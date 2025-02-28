@@ -1,56 +1,62 @@
-# FINANCIAL_SALES_DASH_BOARD
+# Population Data Analysis Dashboard
 
-### Dashboard Link : [https://app.powerbi.com/links/8rd0nXrrS0?ctid=087d7ae3-a519-4cd5-9a60-d14a935d37c8&pbi_source=linkShare](https://app.powerbi.com/groups/me/reports/27da7756-07bc-4bd4-85e9-d150e408254e/fa0ac544e185a0d2863c?experience=power-bi)
+### Dashboard Link : [**Population**](https://app.powerbi.com/groups/me/reports/beb01e9a-32a2-4c57-b0bf-8afaa88fbb08/2d8dec51d9ed062ec065?experience=power-bi)
 
 
 
 ## Objective of the Project
-The primary objective of this project is to analyze and derive actionable insights from a financial dashboard to optimize business performance, enhance profitability, and drive strategic decision-making. The dashboard provides key financial metrics and segmentations for total sales, profit, units sold, and profit margins across various dimensions such as year (2013–2014), country, product, and discount bands.
+This dashboard provides a visual summary of global population metrics, including total population, land area, fertility rates, urban population percentage, median age, and the distribution of world population share by country. It uses various visualizations (cards, gauges, pie charts, and bar charts) to present data in an accessible and comparative format, enabling insights into demographic trends.
 
 # Snapshot of Dashboard (Power BI Service)
 
 ### Main dashboard
-![image](https://github.com/user-attachments/assets/a3540f3e-e2a0-4bc4-a695-fb3be8f1ccc5)
-### Sales dashboard [Page Navigation]
-![image](https://github.com/user-attachments/assets/b790a682-4182-4aa4-9cb7-bbb08ba4aa3d)
-### Profit dashboard [Page Navigation]
-![image](https://github.com/user-attachments/assets/e0bf9f3d-50a5-479c-b85f-f82261a2b829)
 
+![image](https://github.com/user-attachments/assets/73c0ad0b-0265-461d-889c-95a2ec5539a6)
 
-## Overview:
-The "Financials Dashboard" provides a comprehensive view of a company’s financial performance for the years 2013 and 2014, focusing on key metrics such as sales, profit, units, orders, discounts, and their distribution across countries, products, segments, and discount bands. The dashboard is interactive, allowing users to filter data by year and country using dropdown slicers, and it includes various visualizations (bar charts, line charts, pie charts, treemaps, and scatter plots) to analyze trends and performance.
 
 ## Actionable Insights for Clients:
 
-# Insights from the Financials Dashboard (2014)
 
-## 1. Overall Financial Performance
-- **Total Sales and Profit**: The company generated total sales of $118.73 million and a total profit of $16.89 million, indicating a profit margin of approximately 14.2% ($16.89M / $118.73M). This suggests reasonable profitability, but further analysis of costs and expenses is needed for context.
-- **Total Units Sold**: 1.13 million units were sold, which could help calculate per-unit profitability or sales volume trends compared to previous years (if available).
+## Insights from Population Data Analysis Dashboard
 
-## 2. Profit Distribution by Country
-- **Top Performers**: France (22.38%) and Germany (21.79%) lead in profit contribution, followed closely by Canada (20.89%). These three countries account for nearly 65% of total profit, indicating strong market performance in these regions.
-- **Smaller Contributors**: The United States (17.73%) and Mexico (17.21%) contribute less, suggesting potential areas for growth or optimization in these markets.
-- **Geographic Focus**: The company has a balanced presence in North America (Canada, U.S., Mexico) and Europe (France, Germany), with no single country overwhelmingly dominating.
+### 1. Global Population Overview
+- **Total Population**: The dashboard reports a global population of 8 billion, indicating significant growth compared to historical data. This figure underscores the scale of global demographic challenges, including resource allocation and urbanization.
+- **Land Area**: With a total land area of 130 million km², the dashboard highlights the density and distribution challenges, as population growth must be supported within this finite space.
 
-## 3. Profit by Product
-- **Top-Selling Products**: Paseo is the most profitable product at $4.8 million, followed by VTT ($3.0M) and Amarilla ($2.8M). These products drive the majority of profit, making them critical to success.
-- **Lower-Profit Products**: Velo ($2.3M), Montaña ($2.1M), and Carretera ($1.8M) contribute less, potentially indicating lower demand, higher costs, or less competitive pricing.
-- **Product Portfolio Strategy**: Consider focusing on promoting or optimizing Paseo, VTT, and Amarilla, while evaluating whether to improve or phase out lower-profit products like Carretera.
+### 2. Fertility Rate Distribution
+- **Fertility Rate Analysis (TFR)**:
+  - **TFR < 2.1 (54.87%)**: The largest segment of the global population falls into this category, suggesting a trend toward lower fertility rates in many regions, likely driven by urbanization, education, and access to contraception.
+  - **TFR Between 2.1 and 4 (33.63%)**: This middle range indicates moderate fertility in some countries, potentially reflecting developing regions with growing but stabilizing populations.
+  - **TFR > 4 (11.5%)**: A smaller but notable portion of the population has very high fertility rates, typically found in specific developing countries or regions with cultural or economic factors encouraging larger families.
+- **Implication**: The predominance of TFR < 2.1 suggests an aging global population in many areas, which could lead to workforce shortages and increased demand for healthcare and pension systems in the coming decades.
 
-## 4. Profit by Discount Band
-- **Discount Impact on Profit**: The majority of profit comes from products with low ($6.19M) and medium ($5.58M) discount levels, while high discounts ($3.39M) and no discounts ($1.74M) contribute less. This suggests moderate discounting (low to medium) is effective without significantly eroding margins.
-- **Discount Strategy**: High discounts yield lower profits, indicating potential over-discounting or sales to less profitable customers. Products with no discounts have the lowest profit, possibly reflecting limited appeal or pricing resistance.
-- **Optimization Opportunity**: Refine discount strategies to maximize profit, possibly by reducing high discounts or targeting more profitable customer segments with low or no discounts.
+### 3. Urbanization Trends
+- **Average Urban Population % (59.11%)**: More than half of the global population lives in urban areas, indicating rapid urbanization worldwide. This trend may strain infrastructure, housing, and public services in cities, while also driving economic growth and innovation.
+- **Implication**: Policymakers should prioritize sustainable urban planning and investment in urban infrastructure to accommodate this growing urban population.
 
-## 5. Comparative Analysis
-- **Sales vs. Profit**: Total sales ($118.73M) far exceed profit ($16.89M), suggesting high costs (e.g., production, marketing, or freight) or thin margins. Analyzing cost structures could reveal improvement areas.
-- **Units vs. Profit/Sales**: With 1.13M units sold, the average revenue per unit is approximately $105 ($118.73M / 1.13M), and the average profit per unit is about $15 ($16.89M / 1.13M). This indicates room to improve margins or reduce costs per unit.
+### 4. Median Age Insights
+- **Average Median Age (31.68 years)**: The global median age is relatively young, suggesting a large working-age population that could drive economic productivity. However, regional variations (not shown in the dashboard) may reveal aging populations in developed countries and younger populations in developing ones.
+- **Implication**: Countries with a younger median age may benefit from a demographic dividend if education and employment opportunities are expanded, while aging regions may need to address workforce sustainability.
 
-## 6. Potential Areas for Action
-- **Market Expansion**: Increase efforts in the U.S. and Mexico to boost their profit contributions, potentially by tailoring products or marketing strategies to these regions.
-- **Product Focus**: Invest in or promote high-profit products like Paseo and VTT, while assessing the viability of lower-profit products like Carretera.
-- **Discount Policy**: Refine discount strategies to favor low and medium discount bands, which yield higher profits, and avoid over-reliance on high discounts that reduce margins.
-- **Cost Management**: Investigate why total sales significantly outpace profits to identify cost-saving opportunities or pricing adjustments.
+### 5. World Population Share by Country
+- **Top Countries**:
+  - **India**: Holds the highest world population share (approx. 0.20), reflecting its position as the most populous country as of 2025.
+  - **China**: Second highest (approx. 0.15), though its share may be declining due to long-standing population control policies and a lower fertility rate.
+  - **United States, Indonesia, Pakistan, Nigeria, Brazil, Bangladesh, Russia, Ethiopia**: These countries collectively account for a significant portion of the global population, with varying growth rates and demographic challenges.
+- **Implication**: The concentration of population in a few large countries highlights the need for targeted policies on resource distribution, healthcare, and environmental sustainability in these regions.
 
+### 6. Key Takeaways and Recommendations
+- **Demographic Trends**: The dashboard reveals a world with a large, urbanizing, and increasingly aging population in some regions, alongside younger, rapidly growing populations in others. This duality presents both opportunities (e.g., economic growth from a young workforce) and challenges (e.g., aging populations, urban strain).
+- **Policy Recommendations**:
+  - Invest in urban infrastructure to support the 59.11% urban population and mitigate overcrowding.
+  - Address low fertility rates in some regions with policies to support family planning, work-life balance, or immigration, if needed.
+  - Leverage the young median age in many countries through education, job creation, and skill development to maximize the demographic dividend.
+  - Focus on sustainable development in high-population countries like India and China to manage resource demands and environmental impact.
+
+### 7. Limitations of the Data
+- The dashboard provides a high-level overview but lacks granular data on specific countries or regions beyond the top population shares. Additional context, such as income levels, education, or migration patterns, would enhance the analysis.
+- The "0.00M" values in the gauge charts for urban population and median age suggest either missing data or a formatting issue, which should be clarified for accurate interpretation.
+
+## Summary
+This population data analysis, scraped from a website and visualized in the dashboard, offers valuable insights into global demographic trends as of February 28, 2025. It highlights the interplay of population size, fertility, urbanization, and age distribution, providing a foundation for strategic planning in government, business, and international organizations.
 
