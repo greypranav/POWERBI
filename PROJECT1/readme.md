@@ -18,7 +18,7 @@ The primary objective of this project is to analyze and derive actionable insigh
 
 
 ## Overview:
-
+The "Financials Dashboard" provides a comprehensive view of a company’s financial performance for the years 2013 and 2014, focusing on key metrics such as sales, profit, units, orders, discounts, and their distribution across countries, products, segments, and discount bands. The dashboard is interactive, allowing users to filter data by year and country using dropdown slicers, and it includes various visualizations (bar charts, line charts, pie charts, treemaps, and scatter plots) to analyze trends and performance.
 
 ## Actionable Insights for Clients:
 
