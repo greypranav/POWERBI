@@ -1,3 +1,9 @@
+<span style="font-family: Georgia;">
+<SPAN STYLE="font-size:16.0pt">
+<span style="line-height: 1.5em;">
+
+****
+
 ### High Cloud Airlines Data Analysis Dashboard
 * * *
 **#1) Project Overview**
@@ -25,7 +31,8 @@ to 2013, focusing on the following objectives:
 - It cconsist of 1 fact table and 9 dimensions Table.
 - This is the Data Model.
 
-  ![8d92bb98f515630da7015770600bbbc1.png](:/d8436df84e4142a2b11fe02e4acc1eff)
+  ![image](https://github.com/user-attachments/assets/f67dbbc3-650a-4462-b648-e67c58aff710)
+
 
 ***
 **#4) Tools Used**
