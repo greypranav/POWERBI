@@ -21,6 +21,19 @@ to 2013, focusing on the following objectives:
   *  Identify passenger preferences for carriers and routes.
   *  Analyze flight distribution by distance and week type.
   *  Provide actionable insights for operational improvements.
+ 
+ ***
+ ### Snapshot of Dashboard (Power BI Service) & Dashboard Link
+ ***
+
+[**Dash_Board_Link**](https://tinyurl.com/pbixexcelR)
+ 
+![image](https://github.com/user-attachments/assets/45f4ed55-e50d-4687-b33e-e365987e3f16)
+
+![image](https://github.com/user-attachments/assets/01ff1f13-38d3-443e-b2f8-1b28ca6906ed)
+
+
+ 
 
 ***
 **#3) ETL Process and Modelling**
