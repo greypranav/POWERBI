@@ -71,9 +71,10 @@ The analysis highlights the following aggregate metrics:
 * * *
 * The load factor, a measure of operational efficiency, shows a general upward trend from 2008 to 2013, with a slight dip in 2012:
 
-![35015c87434d2bbe9d8110892682fe47.png](:/ce78d103feac4e129a6962d7a3f4597a)
+![image](https://github.com/user-attachments/assets/f978198a-397d-43f0-9226-614f2352ed86)
 
-![86eaece1c7813a764520a7370edbff56.png](:/f3afd6a351ea4666b366fc39e5c5519f)
+![image](https://github.com/user-attachments/assets/f5c52d1c-5634-4a5e-9f05-e3402f286811)
+
 
 * Globespan Airways Limited, operating as Flyglobespan, leads with the highest load factor at 90.999%, reflecting excellent capacity utilization
 
@@ -81,7 +82,8 @@ The analysis highlights the following aggregate metrics:
 ***5.3_Carrier Preferences***
 * * *
 
-![157505f5452076dcf792a473acd343f2.png](:/42b6a2e2c3fc4b6e87ac76bc6b9a6b70)
+![image](https://github.com/user-attachments/assets/5e6f4f23-5f7e-4bda-9dfd-6a08f3a82e4e)
+
 
 * Southwest Airlines Co. leads with the highest passenger preference, serving around 35 million passengers.
 * Delta Air Lines Inc. is the second most preferred, with approximately 30 million passengers.
@@ -91,7 +93,8 @@ The analysis highlights the following aggregate metrics:
 ***5.4_Top Routes***
 * * *
 
-![2b10dbaf4ab1d0a4a3cb0701d9c2b432.png](:/7ca6fcc5f4d349ecb26b5ef1d6c4f2f4)
+![image](https://github.com/user-attachments/assets/1d516b60-a1bf-495b-80b8-86e30e4181f5)
+
 
 * This chart evaluates the popularity of airline routes based on the number of Airlines operating between specific city pairs
 * The route "Chicago, II - Detroit, MI" has the highest count of airline IDs, approaching 100, indicating it is the most serviced route.
@@ -104,13 +107,15 @@ The analysis highlights the following aggregate metrics:
 * This covers Weekend vs Weekday Load Factor: Analyzed how much load factor is occupied on weekends vs weekdays.
 * Weekend load factors are slightly lower than weekdays, suggesting a need for targeted promotions
 
-![91bb5ff28e0d13d8563f253f60a8e700.png](:/97eb2fcc0d1a494d902ceabacb5c10c4)
+![image](https://github.com/user-attachments/assets/3b5e8893-aff4-4cd6-b42c-641af2de06f1)
+
 
 ***
 ***5.6_Flight Distance Distribution***
 * * *
 
-![0212259937fd6e6af4624a18bc35fa67.png](:/55357327cb6e4626aa03130cf3e62a15)
+![image](https://github.com/user-attachments/assets/5a2d6cf4-6ecc-4466-927b-ead64e9acd13)
+
 
 * It categorizes Flights by Distance groups. It categorizes flights based on distance groups.
 * The majority of flights fall into the **"Less than 500 miles"** category, as indicated by the tallest bar on the far left. This suggests that short-haul flights are the most common.
