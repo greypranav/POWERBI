@@ -1,7 +1,8 @@
 # FINANCIAL_SALES_DASH_BOARD
 
+***
 ### [**Dashboard_Link**](https://app.powerbi.com/view?r=eyJrIjoiOGU1NmQzYWMtNzI3OC00NjgwLThhYWYtNjRhZjQ2ZDMyMDA3IiwidCI6ImQzMmJiZmRkLTNlZTUtNGE3Ny04Mjk2LTlmZThkYzQyNzVjMSJ9)
-
+***
 
 
 ## Objective of the Project
