@@ -1,6 +1,6 @@
 # Population Data Analysis Dashboard
 
-### Dashboard Link : [**Population**](https://app.powerbi.com/groups/me/reports/beb01e9a-32a2-4c57-b0bf-8afaa88fbb08/2d8dec51d9ed062ec065?experience=power-bi)
+### [**Dashboard_Link**](https://app.powerbi.com/view?r=eyJrIjoiNmU3NDkzM2ItYTE0ZC00NGMwLWEwZWItNjAwYzY0YTYwYTkzIiwidCI6ImQzMmJiZmRkLTNlZTUtNGE3Ny04Mjk2LTlmZThkYzQyNzVjMSJ9&pageName=2d8dec51d9ed062ec065)
 
 ### Source link [**worldometers**](https://www.worldometers.info/world-population/population-by-country/)
 
