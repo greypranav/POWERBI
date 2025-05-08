@@ -1,6 +1,6 @@
 # FINANCIAL_SALES_DASH_BOARD
 
-### Dashboard Link : [https://app.powerbi.com/links/8rd0nXrrS0?ctid=087d7ae3-a519-4cd5-9a60-d14a935d37c8&pbi_source=linkShare](https://app.powerbi.com/groups/me/reports/27da7756-07bc-4bd4-85e9-d150e408254e/fa0ac544e185a0d2863c?experience=power-bi)
+### [**Dashboard_Link**](https://app.powerbi.com/view?r=eyJrIjoiOGU1NmQzYWMtNzI3OC00NjgwLThhYWYtNjRhZjQ2ZDMyMDA3IiwidCI6ImQzMmJiZmRkLTNlZTUtNGE3Ny04Mjk2LTlmZThkYzQyNzVjMSJ9)
 
 
 
