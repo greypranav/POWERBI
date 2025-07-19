@@ -40,5 +40,20 @@ This HR Analytics project explores workforce attrition and performance trends us
 <img width="1767" height="747" alt="image" src="https://github.com/user-attachments/assets/8bf7a18c-1d83-4076-9b1c-78a3810ee696" />
 
      
+## 🚧 Challenges Faced
 
+- **Lack of Time Dimension**: Limited time-based trend analysis  
+- **Homogeneous Data**: Similar KPI values reduced analytical contrast  
+- **Limited Business Context**: Raw data lacked narrative clarity  
+- **Prioritization**: KPIs had similar importance, making focus difficult
+***
+## 📞 Let us connect
+* * *
+Made by  **Pranav M** – Data Analyst  
+* * *
+📧 Email: **pranavm91@gmail.com**
+* * *
+📎 Portfolio: [**Linktree**](https://linktr.ee/pranav.data14)
+* * *
+🧑‍💼 LinkedIn : [**LinkedIn**](https://www.linkedin.com/in/pranav-data/)
   
