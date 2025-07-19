@@ -191,8 +191,6 @@ This dashboard enables strategic insights into:
 * * *
 Made by  **Pranav M** – Data Analyst  
 * * *
-📧 Email: **pranavm91@gmail.com**
-* * *
-📎 Portfolio: [**Linktree**](https://linktr.ee/pranav.data14)
-* * *
-🧑‍💼 LinkedIn : [**LinkedIn**](https://www.linkedin.com/in/pranav-data/)
+📧 Email: **pranavm91@gmail.com** | 📎 Portfolio: [**Linktree**](https://linktr.ee/pranav.data14) |  🧑‍💼 LinkedIn : [**LinkedIn**](https://www.linkedin.com/in/pranav-data/)
+
+
