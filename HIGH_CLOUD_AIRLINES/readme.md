@@ -131,3 +131,12 @@ The analysis highlights the following aggregate metrics:
 - The load factor varies significantly by quarter, with Q3 showing the highest due to peak travel seasons.
 - Top carriers maintain a consistent load factor, indicating efficient capacity management.
 - Distance-based flight analysis reveals longer routes have lower load factors, possibly due to pricing or demand.
+
+---
+
+## 📞 Let us connect
+* * *
+Made by  **Pranav M** – Data Analyst  
+* * *
+📧 Email: **pranavm91@gmail.com** | 📎 Portfolio: [**Linktree**](https://linktr.ee/pranav.data14) |  🧑‍💼 LinkedIn : [**LinkedIn**](https://www.linkedin.com/in/pranav-data/)
+
