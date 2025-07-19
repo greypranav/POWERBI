@@ -5,7 +5,22 @@
 ## 📊 Project Overview
 
 This HR Analytics project explores workforce attrition and performance trends using various KPIs derived from employee data. The primary goal is to extract insights that support data-driven HR decision-making and retention strategies.
-* * *
+
+***
+ ### Snapshot of Dashboard (Power BI Service) & Dashboard Link
+***
+[**Dash_Board_Link**](https://app.powerbi.com/view?r=eyJrIjoiYzgxYjdjNWQtYTI0Ni00MTJhLWJhZDgtNDQwZjY2OGE0NDljIiwidCI6ImQzMmJiZmRkLTNlZTUtNGE3Ny04Mjk2LTlmZThkYzQyNzVjMSJ9)
+***
+
+<img width="1337" height="758" alt="image" src="https://github.com/user-attachments/assets/ff94bcdc-ecf4-41a2-a2b7-ce51e0675243" />
+
+<img width="1322" height="733" alt="image" src="https://github.com/user-attachments/assets/5ba10d69-0dbd-4be1-b7e6-18589fe59fbb" />
+
+
+
+
+
+
 ## 📌 Key KPIs & Insights
 * * *
 
