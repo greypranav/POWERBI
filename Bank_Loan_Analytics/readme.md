@@ -7,6 +7,8 @@ A data-driven dashboard analyzing **loan performance, payment behavior, creditwo
 
 [**DASHBOARD_LINK**](https://app.powerbi.com/view?r=eyJrIjoiNWY2NDY4MWEtNWY1Ny00MWRkLWIyZDUtNWI3MTAyYWE3ODRlIiwidCI6ImQzMmJiZmRkLTNlZTUtNGE3Ny04Mjk2LTlmZThkYzQyNzVjMSJ9)
 
+***
+
 <img width="1460" height="842" alt="image" src="https://github.com/user-attachments/assets/c7835655-ffbc-45f1-a61e-f2349e40a4d2" />
 
 
