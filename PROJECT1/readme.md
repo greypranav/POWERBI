@@ -54,4 +54,11 @@ The "Financials Dashboard" provides a comprehensive view of a company’s financ
 - **Discount Policy**: Refine discount strategies to favor low and medium discount bands, which yield higher profits, and avoid over-reliance on high discounts that reduce margins.
 - **Cost Management**: Investigate why total sales significantly outpace profits to identify cost-saving opportunities or pricing adjustments.
 
+---
+
+## 📞 Let us connect
+* * *
+Made by  **Pranav M** – Data Analyst  
+* * *
+📧 Email: **pranavm91@gmail.com** | 📎 Portfolio: [**Linktree**](https://linktr.ee/pranav.data14) |  🧑‍💼 LinkedIn : [**LinkedIn**](https://www.linkedin.com/in/pranav-data/)
 
