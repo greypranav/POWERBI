@@ -61,3 +61,11 @@ This dashboard provides a visual summary of global population metrics, including
 ## Summary
 This population data analysis, scraped from a website and visualized in the dashboard, offers valuable insights into global demographic trends as of February 28, 2025. It highlights the interplay of population size, fertility, urbanization, and age distribution, providing a foundation for strategic planning in government, business, and international organizations.
 
+---
+
+## 📞 Let us connect
+* * *
+Made by  **Pranav M** – Data Analyst  
+* * *
+📧 Email: **pranavm91@gmail.com** | 📎 Portfolio: [**Linktree**](https://linktr.ee/pranav.data14) |  🧑‍💼 LinkedIn : [**LinkedIn**](https://www.linkedin.com/in/pranav-data/)
+
