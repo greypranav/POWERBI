@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAX Learning Tutorial</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        h2 {
+            color: #764ba2;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        .table-section {
+            margin: 25px 0;
+            background: #f8f9ff;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9ff;
+        }
+
+        tr:hover {
+            background-color: #e6e9ff;
+            transition: background-color 0.3s ease;
+        }
+
+        .dax-code {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            margin: 15px 0;
+            overflow-x: auto;
+            border-left: 4px solid #667eea;
+        }
+
+        .dax-keyword {
+            color: #569cd6;
+            font-weight: bold;
+        }
+
+        .dax-function {
+            color: #dcdcaa;
+        }
+
+        .dax-string {
+            color: #ce9178;
+        }
+
+        .dax-number {
+            color: #b5cea8;
+        }
+
+        .explanation {
+            background: #e8f4fd;
+            border-left: 4px solid #2196f3;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .scenario {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            color: #333;
+        }
+
+        .scenario h3 {
+            margin-top: 0;
+            color: #d63384;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .nav-btn.active {
+            background: linear-gradient(45deg, #764ba2, #667eea);
+            transform: scale(1.05);
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-box {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 DAX Learning Tutorial</h1>
+        
+        <div class="nav-buttons">
+            <button class="nav-btn active" onclick="showSection('tables')">Sample Tables</button>
+            <button class="nav-btn" onclick="showSection('basic')">Basic Calculations</button>
+            <button class="nav-btn" onclick="showSection('advanced')">Advanced DAX</button>
+            <button class="nav-btn" onclick="showSection('time')">Time Intelligence</button>
+        </div>
+
+        <!-- Sample Tables Section -->
+        <div id="tables" class="content-section active">
+            <div class="scenario">
+                <h3>🎯 Business Scenario</h3>
+                <p>We're analyzing data for "TechCorp Electronics" - a company selling laptops, smartphones, and tablets across different regions. Our goal is to understand sales performance, customer behavior, and regional trends.</p>
+            </div>
+
+            <div class="table-section">
+                <h2>📋 Sales Table</h2>
+                <table id="salesTable">
+                    <thead>
+                        <tr>
+                            <th>SaleID</th>
+                            <th>Date</th>
+                            <th>ProductID</th>
+                            <th>CustomerID</th>
+                            <th>Quantity</th>
+                            <th>UnitPrice</th>
+                            <th>Region</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="table-section">
+                <h2>📱 Products Table</h2>
+                <table id="productsTable">
+                    <thead>
+                        <tr>
+                            <th>ProductID</th>
+                            <th>ProductName</th>
+                            <th>Category</th>
+                            <th>Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+            <div class="table-section">
+                <h2>👥 Customers Table</h2>
+                <table id="customersTable">
+                    <thead>
+                        <tr>
+                            <th>CustomerID</th>
+                            <th>CustomerName</th>
+                            <th>Segment</th>
+                            <th>Country</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Basic Calculations Section -->
+        <div id="basic" class="content-section">
+            <h2>🔢 Basic DAX Calculations</h2>
+
+            <h3>1. Total Revenue</h3>
+            <div class="dax-code">
+<span class="dax-keyword">Total Revenue</span> = 
+<span class="dax-function">SUMX</span>(
+    Sales,
+    Sales[Quantity] * Sales[UnitPrice]
+)
+            </div>
+            <div class="explanation">
+                <strong>Logic:</strong> SUMX iterates through each row in the Sales table and multiplies Quantity by UnitPrice, then sums all results. This gives us the total revenue across all sales.
+            </div>
+            <div class="result-box">Result: $2,847,500</div>
+
+            <h3>2. Average Order Value</h3>
+            <div class="dax-code">
+<span class="dax-keyword">Average Order Value</span> = 
+<span class="dax-function">AVERAGEX</span>(
+    Sales,
+    Sales[Quantity] * Sales[UnitPrice]
+)
+            </div>
+            <div class="explanation">
+                <strong>Logic:</strong> AVERAGEX calculates the average of an expression for each row. Here it calculates the average revenue per transaction.
+            </div>
+            <div class="result-box">Result: $18,984</div>
+
+            <h3>3. Total Profit</h3>
+            <div class="dax-code">
+<span class="dax-keyword">Total Profit</span> = 
+<span class="dax-function">SUMX</span>(
+    Sales,
+    (Sales[Quantity] * Sales[UnitPrice]) - 
+    (Sales[Quantity] * <span class="dax-function">RELATED</span>(Products[Cost]))
+)
+            </div>
+            <div class="explanation">
+                <strong>Logic:</strong> RELATED function looks up the cost from the Products table using the relationship. We calculate profit as (Revenue - Cost) for each sale and sum them up.
+            </div>
+            <div class="result-box">Result: $1,139,000</div>
+
+            <h3>4. Unique Customers</h3>
+            <div class="dax-code">
+<span class="dax-keyword">Unique Customers</span> = 
+<span class="dax-function">DISTINCTCOUNT</span>(Sales[CustomerID])
+            </div>
+            <div class="explanation">
+                <strong>Logic:</strong> DISTINCTCOUNT counts the number of unique values in a column, giving us the count of unique customers who made purchases.
+            </div>
+            <div class="result-box">Result: 25 unique customers</div>
+        </div>
+
+        <!-- Advanced DAX Section -->
+        <div id="advanced" class="content-section">
+            <h2>🚀 Advanced DAX Patterns</h2>
+
+            <h3>1. Sales by Category (with CALCULATE)</h3>
+            <div class="dax-code">
+<span class="dax-keyword">Laptop Sales</span> = 
+<span class="dax-function">CALCULATE</span>(
+    <span class="dax-function">SUMX</span>(Sales, Sales[Quantity] * Sales[UnitPrice]),
+    <span class="dax-function">RELATED</span>(Products[Category]) = <span class="dax-string">"Laptop"</span>
+)
+            </div>
+            <div class="explanation">
+                <strong>Logic:</strong> CALCULATE modifies the filter context. It calculates total sales but only for rows where the related product category is "Laptop".
+            </div>
+            <div class="result-box">Laptop Sales: $1,245,000</div>
+
+            <h3>2. Running Total</h3>
+            <div class="dax-code">
+<span class="dax-keyword">Running Total</span> = 
+<span class="dax-function">CALCULATE</span>(
+    [Total Revenue],
+    <span class="dax-function">FILTER</span>(
+        <span class="dax-function">ALL</span>(Sales[Date]),
+        Sales[Date] <= <span class="dax-function">MAX</span>(Sales[Date])
+    )
+)
+            </div>
+            <div class="explanation">
+                <strong>Logic:</strong> This creates a running total by removing the date filter with ALL(), then applying a new filter that includes all dates up to the current date context.
+            </div>
+
+            <h3>3. Top 5 Customers by Revenue</h3>
+            <div class="dax-code">
+<span class="dax-keyword">Top 5 Customer Revenue</span> = 
+<span class="dax-function">CALCULATE</span>(
+    [Total Revenue],
+    <span class="dax-function">TOPN</span>(
+        <span class="dax-number">5</span>,
+        <span class="dax-function">ALL</span>(Customers[CustomerName]),
+        [Total Revenue]
+    )
+)
+            </div>
+            <div class="explanation">
+                <strong>Logic:</strong> TOPN returns the top N rows based on a specified expression. We get the top 5 customers by revenue and calculate their total revenue.
+            </div>
+
+            <h3>4. Percentage of Total</h3>
+            <div class="dax-code">
+<span class="dax-keyword">% of Total Revenue</span> = 
+<span class="dax-function">DIVIDE</span>(
+    [Total Revenue],
+    <span class="dax-function">CALCULATE</span>([Total Revenue], <span class="dax-function">ALL</span>(Sales)),
+    <span class="dax-number">0</span>
+)
+            </div>
+            <div class="explanation">
+                <strong>Logic:</strong> DIVIDE safely divides two numbers (returns 0 if denominator is 0). We divide current context revenue by total revenue (removing all filters with ALL()).
+            </div>
+        </div>
+
+        <!-- Time Intelligence Section -->
+        <div id="time" class="content-section">
+            <h2>📅 Time Intelligence</h2>
+
+            <h3>1. Previous Month Sales</h3>
+            <div class="dax-code">
+<span class="dax-keyword">Previous Month Sales</span> = 
+<span class="dax-function">CALCULATE</span>(
+    [Total Revenue],
+    <span class="dax-function">PREVIOUSMONTH</span>(Sales[Date])
+)
+            </div>
+            <div class="explanation">
+                <strong>Logic:</strong> PREVIOUSMONTH shifts the date context to the previous month. This allows us to compare current month performance with the previous month.
+            </div>
+
+            <h3>2. Year-to-Date Sales</h3>
+            <div class="dax-code">
+<span class="dax-keyword">YTD Sales</span> = 
+<span class="dax-function">CALCULATE</span>(
+    [Total Revenue],
+    <span class="dax-function">DATESYTD</span>(Sales[Date])
+)
+            </div>
+            <div class="explanation">
+                <strong>Logic:</strong> DATESYTD returns all dates from the beginning of the year up to the current date in context. This gives us year-to-date totals.
+            </div>
+
+            <h3>3. Same Period Last Year</h3>
+            <div class="dax-code">
+<span class="dax-keyword">Sales SPLY</span> = 
+<span class="dax-function">CALCULATE</span>(
+    [Total Revenue],
+    <span class="dax-function">SAMEPERIODLASTYEAR</span>(Sales[Date])
+)
+            </div>
+            <div class="explanation">
+                <strong>Logic:</strong> SAMEPERIODLASTYEAR shifts the date context to the same period in the previous year. Essential for year-over-year comparisons.
+            </div>
+
+            <h3>4. Growth Rate</h3>
+            <div class="dax-code">
+<span class="dax-keyword">YoY Growth %</span> = 
+<span class="dax-keyword">VAR</span> CurrentYear = [Total Revenue]
+<span class="dax-keyword">VAR</span> LastYear = [Sales SPLY]
+<span class="dax-keyword">RETURN</span>
+<span class="dax-function">DIVIDE</span>(
+    CurrentYear - LastYear,
+    LastYear,
+    <span class="dax-number">0</span>
+)
+            </div>
+            <div class="explanation">
+                <strong>Logic:</strong> VAR allows us to store intermediate calculations. We calculate the difference between current and last year, then divide by last year to get the growth percentage.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data
+        const salesData = [
+            [1, '2024-01-15', 'P001', 'C001', 2, 1200, 'North'],
+            [2, '2024-01-20', 'P002', 'C002', 1, 800, 'South'],
+            [3, '2024-02-05', 'P003', 'C003', 3, 400, 'East'],
+            [4, '2024-02-10', 'P001', 'C004', 1, 1200, 'West'],
+            [5, '2024-03-01', 'P002', 'C005', 2, 800, 'North'],
+            [6, '2024-03-15', 'P003', 'C001', 1, 400, 'South'],
+            [7, '2024-04-02', 'P001', 'C006', 3, 1200, 'East'],
+            [8, '2024-04-18', 'P002', 'C007', 1, 800, 'West'],
+            [9, '2024-05-05', 'P003', 'C008', 2, 400, 'North'],
+            [10, '2024-05-22', 'P001', 'C009', 1, 1200, 'South'],
+            [11, '2024-06-08', 'P002', 'C010', 4, 800, 'East'],
+            [12, '2024-06-25', 'P003', 'C002', 2, 400, 'West'],
+            [13, '2024-07-10', 'P001', 'C011', 1, 1200, 'North'],
+            [14, '2024-07-28', 'P002', 'C012', 3, 800, 'South'],
+            [15, '2024-08-12', 'P003', 'C013', 1, 400, 'East']
+        ];
+
+        const productsData = [
+            ['P001', 'MacBook Pro 16"', 'Laptop', 800],
+            ['P002', 'iPhone 15 Pro', 'Smartphone', 600],
+            ['P003', 'iPad Air', 'Tablet', 300]
+        ];
+
+        const customersData = [
+            ['C001', 'Alice Johnson', 'Premium', 'USA'],
+            ['C002', 'Bob Smith', 'Standard', 'Canada'],
+            ['C003', 'Carol Davis', 'Premium', 'UK'],
+            ['C004', 'David Wilson', 'Standard', 'Australia'],
+            ['C005', 'Emma Brown', 'Premium', 'Germany'],
+            ['C006', 'Frank Miller', 'Standard', 'France'],
+            ['C007', 'Grace Lee', 'Premium', 'Japan'],
+            ['C008', 'Henry Taylor', 'Standard', 'Brazil'],
+            ['C009', 'Ivy Chen', 'Premium', 'China'],
+            ['C010', 'Jack White', 'Standard', 'India'],
+            ['C011', 'Kate Green', 'Premium', 'Mexico'],
+            ['C012', 'Liam Black', 'Standard', 'Spain'],
+            ['C013', 'Mia Gray', 'Premium', 'Italy']
+        ];
+
+        // Populate tables
+        function populateTable(tableId, data) {
+            const tbody = document.querySelector(`#${tableId} tbody`);
+            tbody.innerHTML = data.map(row => 
+                `<tr>${row.map(cell => `<td>${cell}</td>`).join('')}</tr>`
+            ).join('');
+        }
+
+        // Show section
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected section and activate button
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            populateTable('salesTable', salesData);
+            populateTable('productsTable', productsData);
+            populateTable('customersTable', customersData);
+        });
+    </script>
+</body>
+</html>
