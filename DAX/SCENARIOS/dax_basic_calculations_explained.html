@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAX Basic Calculations Explained</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .calculation-card {
+            background: #f8f9ff;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 5px solid #667eea;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .calculation-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        }
+
+        .calc-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .calc-number {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .calc-title {
+            color: #764ba2;
+            font-size: 24px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .dax-code {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            margin: 20px 0;
+            overflow-x: auto;
+            border-left: 4px solid #667eea;
+        }
+
+        .dax-keyword { color: #569cd6; font-weight: bold; }
+        .dax-function { color: #dcdcaa; }
+        .dax-string { color: #ce9178; }
+        .dax-number { color: #b5cea8; }
+        .dax-comment { color: #6a9955; font-style: italic; }
+
+        .explanation-section {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 1px solid #e0e6ff;
+        }
+
+        .concept-box {
+            background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #2196f3;
+        }
+
+        .concept-box h4 {
+            color: #1565c0;
+            margin-top: 0;
+            font-size: 18px;
+        }
+
+        .step-by-step {
+            background: #fff3e0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #ff9800;
+        }
+
+        .step-by-step h4 {
+            color: #e65100;
+            margin-top: 0;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin: 15px 0;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+        }
+
+        .step-number {
+            background: #ff9800;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .alternative-box {
+            background: #f1f8e9;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #4caf50;
+        }
+
+        .alternative-box h4 {
+            color: #2e7d32;
+            margin-top: 0;
+        }
+
+        .result-display {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-weight: 600;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .sample-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .sample-table th {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .sample-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .sample-table tr:nth-child(even) {
+            background-color: #f8f9ff;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #ffd54f 0%, #ffeb3b 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #ffc107;
+        }
+
+        .warning-box h4 {
+            color: #856404;
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧮 DAX Basic Calculations Explained</h1>
+        
+        <!-- Total Revenue -->
+        <div class="calculation-card">
+            <div class="calc-header">
+                <div class="calc-number">1</div>
+                <h2 class="calc-title">Total Revenue</h2>
+            </div>
+
+            <div class="dax-code">
+<span class="dax-keyword">Total Revenue</span> = 
+<span class="dax-function">SUMX</span>(
+    Sales,                              <span class="dax-comment">-- Table to iterate through</span>
+    Sales[Quantity] * Sales[UnitPrice]  <span class="dax-comment">-- Expression to calculate for each row</span>
+)
+            </div>
+
+            <div class="concept-box">
+                <h4>🔍 What is SUMX?</h4>
+                <p><strong>SUMX</strong> is an <em>iterator function</em> that goes through each row of a table and performs a calculation, then sums all the results together.</p>
+                <p><strong>Syntax:</strong> <code>SUMX(Table, Expression)</code></p>
+                <ul>
+                    <li><strong>Table:</strong> The table to iterate through</li>
+                    <li><strong>Expression:</strong> The calculation to perform on each row</li>
+                </ul>
+            </div>
+
+            <div class="step-by-step">
+                <h4>🔄 How SUMX Works Step-by-Step</h4>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <strong>Row 1:</strong> Quantity = 2, UnitPrice = $1,200<br>
+                        <em>Calculation:</em> 2 × $1,200 = <span class="highlight">$2,400</span>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <strong>Row 2:</strong> Quantity = 1, UnitPrice = $800<br>
+                        <em>Calculation:</em> 1 × $800 = <span class="highlight">$800</span>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <strong>Continue for all rows...</strong><br>
+                        <em>Each row gets its own calculation</em>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div>
+                        <strong>Final Step:</strong> Sum all individual results<br>
+                        <em>$2,400 + $800 + $1,200 + ... = Total Revenue</em>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alternative-box">
+                <h4>❌ Why Not Use SUM?</h4>
+                <p>You might think: "Why not just <code>SUM(Sales[Quantity] * Sales[UnitPrice])</code>?"</p>
+                <p><strong>Answer:</strong> Because you can't multiply columns directly in SUM. SUM only works on a single column. SUMX allows you to create complex calculations row by row.</p>
+            </div>
+
+            <div class="result-display">
+                📊 Result: $2,847,500 (Total Revenue)
+            </div>
+        </div>
+
+        <!-- Average Order Value -->
+        <div class="calculation-card">
+            <div class="calc-header">
+                <div class="calc-number">2</div>
+                <h2 class="calc-title">Average Order Value</h2>
+            </div>
+
+            <div class="dax-code">
+<span class="dax-keyword">Average Order Value</span> = 
+<span class="dax-function">AVERAGEX</span>(
+    Sales,                              <span class="dax-comment">-- Table to iterate through</span>
+    Sales[Quantity] * Sales[UnitPrice]  <span class="dax-comment">-- Expression to calculate for each row</span>
+)
+            </div>
+
+            <div class="concept-box">
+                <h4>🔍 What is AVERAGEX?</h4>
+                <p><strong>AVERAGEX</strong> is similar to SUMX, but instead of summing the results, it calculates the average.</p>
+                <p><strong>Formula:</strong> (Sum of all row calculations) ÷ (Number of rows)</p>
+            </div>
+
+            <div class="step-by-step">
+                <h4>🧮 AVERAGEX Calculation Process</h4>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <strong>Calculate each row:</strong><br>
+                        Row 1: 2 × $1,200 = $2,400<br>
+                        Row 2: 1 × $800 = $800<br>
+                        Row 3: 3 × $400 = $1,200<br>
+                        <em>...and so on for all 50 rows</em>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <strong>Sum all calculations:</strong><br>
+                        $2,400 + $800 + $1,200 + ... = $2,847,500
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <strong>Divide by number of rows:</strong><br>
+                        $2,847,500 ÷ 50 rows = <span class="highlight">$56,950 per order</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ Common Mistake</h4>
+                <p>Don't confuse this with <code>AVERAGE(Sales[UnitPrice])</code> which would give you the average unit price, not the average order value. AVERAGEX considers the quantity in each order.</p>
+            </div>
+
+            <div class="result-display">
+                📊 Result: $56,950 (Average Order Value)
+            </div>
+        </div>
+
+        <!-- Total Profit -->
+        <div class="calculation-card">
+            <div class="calc-header">
+                <div class="calc-number">3</div>
+                <h2 class="calc-title">Total Profit</h2>
+            </div>
+
+            <div class="dax-code">
+<span class="dax-keyword">Total Profit</span> = 
+<span class="dax-function">SUMX</span>(
+    Sales,
+    (Sales[Quantity] * Sales[UnitPrice]) -           <span class="dax-comment">-- Revenue</span>
+    (Sales[Quantity] * <span class="dax-function">RELATED</span>(Products[Cost]))      <span class="dax-comment">-- Cost</span>
+)
+            </div>
+
+            <div class="concept-box">
+                <h4>🔗 What is RELATED?</h4>
+                <p><strong>RELATED</strong> is used to lookup values from a related table. It follows the relationship between tables.</p>
+                <p><strong>How it works:</strong> For each row in Sales, RELATED looks up the corresponding cost from the Products table using the ProductID relationship.</p>
+            </div>
+
+            <div class="explanation-section">
+                <h4>🏗️ Table Relationships</h4>
+                <table class="sample-table">
+                    <thead>
+                        <tr>
+                            <th colspan="3">Sales Table (Current Row)</th>
+                            <th colspan="2">Products Table (Related)</th>
+                        </tr>
+                        <tr>
+                            <th>ProductID</th>
+                            <th>Quantity</th>
+                            <th>UnitPrice</th>
+                            <th>ProductID</th>
+                            <th>Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>P001</td>
+                            <td>2</td>
+                            <td>$1,200</td>
+                            <td>P001</td>
+                            <td>$800</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><strong>RELATED(Products[Cost])</strong> finds the matching ProductID and returns $800</p>
+            </div>
+
+            <div class="step-by-step">
+                <h4>💰 Profit Calculation Example</h4>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <strong>Row with P001 (MacBook):</strong><br>
+                        Revenue: 2 × $1,200 = $2,400<br>
+                        Cost: 2 × RELATED($800) = $1,600<br>
+                        <em>Profit: $2,400 - $1,600 = </em><span class="highlight">$800</span>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <strong>Row with P002 (iPhone):</strong><br>
+                        Revenue: 1 × $800 = $800<br>
+                        Cost: 1 × RELATED($600) = $600<br>
+                        <em>Profit: $800 - $600 = </em><span class="highlight">$200</span>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <strong>Sum all profit calculations:</strong><br>
+                        $800 + $200 + ... = Total Profit
+                    </div>
+                </div>
+            </div>
+
+            <div class="result-display">
+                📊 Result: $1,139,000 (Total Profit)
+            </div>
+        </div>
+
+        <!-- Unique Customers -->
+        <div class="calculation-card">
+            <div class="calc-header">
+                <div class="calc-number">4</div>
+                <h2 class="calc-title">Unique Customers</h2>
+            </div>
+
+            <div class="dax-code">
+<span class="dax-keyword">Unique Customers</span> = 
+<span class="dax-function">DISTINCTCOUNT</span>(Sales[CustomerID])
+            </div>
+
+            <div class="concept-box">
+                <h4>🔍 What is DISTINCTCOUNT?</h4>
+                <p><strong>DISTINCTCOUNT</strong> counts the number of unique (distinct) values in a column, ignoring duplicates.</p>
+                <p><strong>Use case:</strong> Perfect for counting unique customers, products, or any scenario where you want to eliminate duplicates.</p>
+            </div>
+
+            <div class="explanation-section">
+                <h4>👥 Sample Customer Data in Sales</h4>
+                <table class="sample-table">
+                    <thead>
+                        <tr>
+                            <th>SaleID</th>
+                            <th>CustomerID</th>
+                            <th>Note</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>C001</td>
+                            <td>First purchase</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>C002</td>
+                            <td>New customer</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>C003</td>
+                            <td>New customer</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>C001</td>
+                            <td>Repeat customer!</td>
+                        </tr>
+                        <tr>
+                            <td>12</td>
+                            <td>C002</td>
+                            <td>Repeat customer!</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="step-by-step">
+                <h4>🔢 DISTINCTCOUNT vs COUNT</h4>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <strong>Using COUNT:</strong><br>
+                        COUNT(Sales[CustomerID]) = 50<br>
+                        <em>(Counts every row, including repeats)</em>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <strong>Using DISTINCTCOUNT:</strong><br>
+                        DISTINCTCOUNT(Sales[CustomerID]) = 25<br>
+                        <em>(Counts only unique customers)</em>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <strong>Interpretation:</strong><br>
+                        We have 50 transactions from 25 unique customers<br>
+                        <em>Average: 2 purchases per customer</em>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alternative-box">
+                <h4>📊 Other Uses of DISTINCTCOUNT</h4>
+                <ul>
+                    <li><code>DISTINCTCOUNT(Sales[ProductID])</code> - Number of different products sold</li>
+                    <li><code>DISTINCTCOUNT(Sales[Region])</code> - Number of regions with sales</li>
+                    <li><code>DISTINCTCOUNT(Sales[Date])</code> - Number of days with sales activity</li>
+                </ul>
+            </div>
+
+            <div class="result-display">
+                📊 Result: 25 (Unique Customers)
+            </div>
+        </div>
+    </div>
+</body>
+</html>
