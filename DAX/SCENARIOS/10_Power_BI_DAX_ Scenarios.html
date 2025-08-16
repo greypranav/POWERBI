@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power BI DAX Scenarios - Interactive Demo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 50%, #fce4ec 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #1976d2, #7b1fa2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        
+        .header p {
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        .main-grid {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            height: fit-content;
+            position: sticky;
+            top: 2rem;
+        }
+        
+        .sidebar h2 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .scenario-btn {
+            width: 100%;
+            text-align: left;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .scenario-btn:hover {
+            background: #f5f5f5;
+            transform: translateY(-1px);
+        }
+        
+        .scenario-btn.active {
+            background: linear-gradient(135deg, #1976d2, #7b1fa2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(25,118,210,0.3);
+        }
+        
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .scenario-details {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+        
+        .scenario-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .scenario-icon {
+            padding: 1rem;
+            background: linear-gradient(135deg, #1976d2, #7b1fa2);
+            border-radius: 0.75rem;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .scenario-title h2 {
+            font-size: 1.8rem;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .scenario-title p {
+            color: #666;
+            font-size: 1rem;
+        }
+        
+        .dax-code {
+            background: #1a1a1a;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .dax-header {
+            color: #ff9800;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .dax-code pre {
+            color: #4caf50;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        
+        .logic-box {
+            background: #e3f2fd;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #1976d2;
+        }
+        
+        .logic-box h3 {
+            color: #1565c0;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logic-box p {
+            color: #1976d2;
+        }
+        
+        .result-box {
+            background: #e8f5e8;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .result-box h3 {
+            color: #2e7d32;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .result-box p {
+            color: #388e3c;
+            font-family: 'Courier New', monospace;
+            font-weight: 500;
+        }
+        
+        .data-tables {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+        
+        .table-card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+        }
+        
+        .table-card h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            display: block;
+            white-space: nowrap;
+        }
+        
+        .data-table thead {
+            display: table-header-group;
+        }
+        
+        .data-table tbody {
+            display: table-row-group;
+        }
+        
+        .data-table tr {
+            display: table-row;
+        }
+        
+        .data-table th,
+        .data-table td {
+            display: table-cell;
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            white-space: nowrap;
+        }
+        
+        .data-table th {
+            background: #f5f5f5;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .data-table tr:hover {
+            background: #f9f9f9;
+        }
+        
+        .table-note {
+            color: #888;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+        
+        .tips-section {
+            background: linear-gradient(135deg, #7b1fa2, #e91e63);
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 2rem;
+            color: white;
+        }
+        
+        .tips-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .tips-column h4 {
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .tips-column ul {
+            list-style: none;
+            opacity: 0.9;
+        }
+        
+        .tips-column li {
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+        
+        .tips-column li:before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #fff;
+        }
+        
+        .icon {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .scenario-icon .icon {
+            width: 24px;
+            height: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 10 Power BI DAX Scenarios</h1>
+            <p>Interactive examples with sample data and explanations</p>
+        </div>
+
+        <div class="main-grid">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <h2>Select Scenario</h2>
+                <div id="scenario-buttons"></div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="content">
+                <!-- Scenario Details -->
+                <div class="scenario-details">
+                    <div class="scenario-header">
+                        <div class="scenario-icon" id="current-icon">
+                            <i data-lucide="calendar" class="icon"></i>
+                        </div>
+                        <div class="scenario-title">
+                            <h2 id="current-title">Year-to-Date (YTD) Sales</h2>
+                            <p id="current-description">Running yearly total from Jan 1st to current date</p>
+                        </div>
+                    </div>
+
+                    <!-- DAX Code -->
+                    <div class="dax-code">
+                        <div class="dax-header">
+                            <i data-lucide="code" class="icon"></i>
+                            DAX Formula
+                        </div>
+                        <pre id="dax-formula">YTD Sales = TOTALYTD(SUM(Sales[SalesAmount]), Sales[OrderDate])</pre>
+                    </div>
+
+                    <!-- Logic Explanation -->
+                    <div class="logic-box">
+                        <h3>
+                            💡 Logic Explanation
+                        </h3>
+                        <p id="logic-text">TOTALYTD automatically calculates cumulative sum from January 1st to the latest date in context. It resets each year.</p>
+                    </div>
+
+                    <!-- Sample Result -->
+                    <div class="result-box">
+                        <h3>
+                            📊 Sample Result
+                        </h3>
+                        <p id="result-text">2024 YTD Total: $8,500</p>
+                    </div>
+                </div>
+
+                <!-- Data Tables -->
+                <div class="data-tables">
+                    <!-- Sales Data -->
+                    <div class="table-card">
+                        <h3>📈 Sales Data Sample</h3>
+                        <table class="data-table" id="sales-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Customer</th>
+                                    <th>Product</th>
+                                    <th>Region</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sales-tbody">
+                            </tbody>
+                        </table>
+                        <p class="table-note" id="sales-note">Showing 6 of 12 records</p>
+                    </div>
+
+                    <!-- Projects Data -->
+                    <div class="table-card">
+                        <h3>📋 Projects Data Sample</h3>
+                        <table class="data-table" id="projects-table">
+                            <thead>
+                                <tr>
+                                    <th>Project</th>
+                                    <th>Start</th>
+                                    <th>End</th>
+                                    <th>Duration</th>
+                                </tr>
+                            </thead>
+                            <tbody id="projects-tbody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Tips Section -->
+                <div class="tips-section">
+                    <h3>💡 Power BI DAX Quick Tips</h3>
+                    <div class="tips-grid">
+                        <div class="tips-column">
+                            <h4>Performance Tips:</h4>
+                            <ul>
+                                <li>Use CALCULATE for context modification</li>
+                                <li>Prefer DIVIDE over "/" for safe division</li>
+                                <li>Use VAR for complex calculations</li>
+                                <li>Avoid nested CALCULATE statements</li>
+                            </ul>
+                        </div>
+                        <div class="tips-column">
+                            <h4>Best Practices:</h4>
+                            <ul>
+                                <li>Test with small datasets first</li>
+                                <li>Use descriptive measure names</li>
+                                <li>Document complex formulas</li>
+                                <li>Optimize data model relationships</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample Data
+        const salesData = [
+            { OrderDate: '2024-01-15', SalesAmount: 1200, CustomerID: 'C001', ProductName: 'Laptop Pro', Region: 'North', TargetSales: 1000 },
+            { OrderDate: '2024-02-20', SalesAmount: 800, CustomerID: 'C002', ProductName: 'Mouse Wireless', Region: 'South', TargetSales: 900 },
+            { OrderDate: '2024-03-10', SalesAmount: 1500, CustomerID: 'C001', ProductName: 'Laptop Pro', Region: 'North', TargetSales: 1300 },
+            { OrderDate: '2024-04-25', SalesAmount: 950, CustomerID: 'C003', ProductName: 'Keyboard Mech', Region: 'East', TargetSales: 1000 },
+            { OrderDate: '2024-05-12', SalesAmount: 1100, CustomerID: 'C001', ProductName: 'Monitor 4K', Region: 'North', TargetSales: 1200 },
+            { OrderDate: '2024-06-08', SalesAmount: 750, CustomerID: 'C004', ProductName: 'Mouse Wireless', Region: 'West', TargetSales: 800 },
+            { OrderDate: '2024-07-14', SalesAmount: 1300, CustomerID: 'C002', ProductName: 'Laptop Pro', Region: 'South', TargetSales: 1100 },
+            { OrderDate: '2024-08-05', SalesAmount: 900, CustomerID: 'C001', ProductName: 'Tablet Air', Region: 'North', TargetSales: 950 },
+            { OrderDate: '2023-01-18', SalesAmount: 1000, CustomerID: 'C005', ProductName: 'Laptop Pro', Region: 'Central', TargetSales: 900 },
+            { OrderDate: '2023-02-22', SalesAmount: 850, CustomerID: 'C006', ProductName: 'Monitor 4K', Region: 'North', TargetSales: 800 },
+            { OrderDate: '2023-03-15', SalesAmount: 1200, CustomerID: 'C005', ProductName: 'Keyboard Mech', Region: 'Central', TargetSales: 1100 },
+            { OrderDate: '2023-07-20', SalesAmount: 1150, CustomerID: 'C007', ProductName: 'Laptop Pro', Region: 'East', TargetSales: 1000 }
+        ];
+
+        const projectsData = [
+            { ProjectName: 'Website Redesign', StartDate: '2024-01-01', EndDate: '2024-03-15', Status: 'Completed' },
+            { ProjectName: 'Mobile App', StartDate: '2024-02-01', EndDate: '2024-06-30', Status: 'In Progress' },
+            { ProjectName: 'Data Migration', StartDate: '2024-03-01', EndDate: '2024-04-15', Status: 'Completed' },
+            { ProjectName: 'Security Audit', StartDate: '2024-04-01', EndDate: '2024-05-01', Status: 'Completed' }
+        ];
+
+        // DAX Scenarios
+        const daxScenarios = [
+            {
+                id: 1,
+                title: "Year-to-Date (YTD) Sales",
+                icon: "calendar",
+                description: "Running yearly total from Jan 1st to current date",
+                daxCode: `YTD Sales = TOTALYTD(SUM(Sales[SalesAmount]), Sales[OrderDate])`,
+                logic: "TOTALYTD automatically calculates cumulative sum from January 1st to the latest date in context. It resets each year.",
+                sampleResult: "2024 YTD: $8,500"
+            },
+            {
+                id: 2,
+                title: "This Month vs Same Month Last Year",
+                icon: "trending-up",
+                description: "Year-over-year comparison for growth analysis",
+                daxCode: `Sales LY = CALCULATE(SUM(Sales[SalesAmount]), SAMEPERIODLASTYEAR(Sales[OrderDate]))`,
+                logic: "SAMEPERIODLASTYEAR shifts the date context back by one year. CALCULATE applies this filter to get previous year's sales.",
+                sampleResult: "July 2024: $1,300 vs July 2023: $1,150 (+13%)"
+            },
+            {
+                id: 3,
+                title: "Top 5 Products (Dynamic)",
+                icon: "target",
+                description: "Always shows top performers regardless of filters",
+                daxCode: `Visual-level filter → Top N → 5 by SalesAmount`,
+                logic: "Power BI's Top N filter automatically ranks and shows only the specified number of top items by the chosen measure.",
+                sampleResult: "1. Laptop Pro: $3,500, 2. Monitor 4K: $1,850, 3. Keyboard Mech: $2,150..."
+            },
+            {
+                id: 4,
+                title: "Variance % (Actual vs Target)",
+                icon: "target",
+                description: "Performance against targets as percentage",
+                daxCode: `Variance % = DIVIDE(SUM(Sales[Actual Sales]) - SUM(Sales[Target Sales]), SUM(Sales[Target Sales]))`,
+                logic: "DIVIDE safely handles division by zero. Formula calculates (Actual - Target) / Target to show percentage variance.",
+                sampleResult: "Total Variance: +8.5% (performing above target)"
+            },
+            {
+                id: 5,
+                title: "Dynamic Currency Conversion",
+                icon: "dollar-sign",
+                description: "User-selectable currency conversion from slicer",
+                daxCode: `Converted Sales = VAR Rate = SELECTEDVALUE(CurrencyRate[Rate], 1)\nRETURN SUM(Sales[SalesAmount]) * Rate`,
+                logic: "VAR stores the selected exchange rate. SELECTEDVALUE gets rate from slicer selection, defaults to 1 if none selected.",
+                sampleResult: "USD: $8,500 → EUR: €7,225 → GBP: £6,375"
+            },
+            {
+                id: 6,
+                title: "Running Total Sales",
+                icon: "trending-up",
+                description: "Cumulative sales over time for trend analysis",
+                daxCode: `Running Total = CALCULATE(SUM(Sales[SalesAmount]), FILTER(ALLSELECTED(Sales[OrderDate]), Sales[OrderDate] <= MAX(Sales[OrderDate])))`,
+                logic: "ALLSELECTED respects visual filters but ignores row context. FILTER includes all dates up to current row's date.",
+                sampleResult: "Jan: $1,200, Feb: $2,000, Mar: $3,500, Apr: $4,450..."
+            },
+            {
+                id: 7,
+                title: "Last 30 Days Sales",
+                icon: "clock",
+                description: "Fixed 30-day window ignoring date slicers",
+                daxCode: `Last 30 Days = CALCULATE(SUM(Sales[SalesAmount]), FILTER(Sales, Sales[OrderDate] >= TODAY() - 30))`,
+                logic: "TODAY() gets current date, subtracts 30 days. FILTER overrides any date slicer to show fixed time window.",
+                sampleResult: "Last 30 Days: $900 (from Aug 5th onward)"
+            },
+            {
+                id: 8,
+                title: "Repeat Customers Only",
+                icon: "users",
+                description: "Sales from customers with 3+ orders",
+                daxCode: `Repeat Sales = CALCULATE(SUM(Sales[SalesAmount]), FILTER(VALUES(Sales[CustomerID]), COUNTROWS(FILTER(Sales, Sales[CustomerID] = EARLIER(Sales[CustomerID]))) > 3))`,
+                logic: "EARLIER references outer row context. Inner FILTER counts orders per customer. Only includes customers with >3 orders.",
+                sampleResult: "Repeat Customer Sales: $4,200 (from C001 with 4 orders)"
+            },
+            {
+                id: 9,
+                title: "Project Duration in Days",
+                icon: "calendar",
+                description: "Calculate project length for tracking",
+                daxCode: `Duration = DATEDIFF(Projects[StartDate], Projects[EndDate], DAY)`,
+                logic: "DATEDIFF calculates difference between two dates in specified unit (DAY, MONTH, YEAR).",
+                sampleResult: "Website Redesign: 74 days, Mobile App: 150 days, Data Migration: 45 days"
+            },
+            {
+                id: 10,
+                title: "Dynamic Page Title",
+                icon: "filter",
+                description: "Title changes based on active filters",
+                daxCode: `Title = "Region: " & CONCATENATEX(VALUES(Regions[RegionName]), Regions[RegionName], ", ") & " | Year: " & CONCATENATEX(VALUES(Dates[Year]), Dates[Year], ", ")`,
+                logic: "CONCATENATEX joins multiple values with delimiter. VALUES gets unique filtered values. Creates dynamic title showing active filters.",
+                sampleResult: "Region: North, South | Year: 2024"
+            }
+        ];
+
+        let currentScenario = 1;
+
+        // Initialize the app
+        function init() {
+            createScenarioButtons();
+            populateDataTables();
+            updateScenarioContent();
+            lucide.createIcons();
+        }
+
+        // Create scenario buttons
+        function createScenarioButtons() {
+            const buttonsContainer = document.getElementById('scenario-buttons');
+            
+            daxScenarios.forEach(scenario => {
+                const button = document.createElement('button');
+                button.className = `scenario-btn ${scenario.id === currentScenario ? 'active' : ''}`;
+                button.onclick = () => selectScenario(scenario.id);
+                
+                button.innerHTML = `
+                    <i data-lucide="${scenario.icon}" class="icon"></i>
+                    <span>${scenario.id}. ${scenario.title}</span>
+                `;
+                
+                buttonsContainer.appendChild(button);
+            });
+        }
+
+        // Select a scenario
+        function selectScenario(id) {
+            currentScenario = id;
+            
+            // Update button states
+            document.querySelectorAll('.scenario-btn').forEach((btn, index) => {
+                btn.classList.toggle('active', index + 1 === id);
+            });
+            
+            updateScenarioContent();
+            lucide.createIcons();
+        }
+
+        // Update scenario content
+        function updateScenarioContent() {
+            const scenario = daxScenarios.find(s => s.id === currentScenario);
+            
+            // Update icon
+            const iconElement = document.querySelector('#current-icon i');
+            iconElement.setAttribute('data-lucide', scenario.icon);
+            
+            // Update text content
+            document.getElementById('current-title').textContent = scenario.title;
+            document.getElementById('current-description').textContent = scenario.description;
+            document.getElementById('dax-formula').textContent = scenario.daxCode;
+            document.getElementById('logic-text').textContent = scenario.logic;
+            document.getElementById('result-text').textContent = calculateResults();
+        }
+
+        // Calculate sample results
+        function calculateResults() {
+            const scenario = daxScenarios.find(s => s.id === currentScenario);
+            
+            switch(currentScenario) {
+                case 1: // YTD
+                    const ytdSales = salesData
+                        .filter(s => s.OrderDate.startsWith('2024'))
+                        .reduce((sum, s) => sum + s.SalesAmount, 0);
+                    return `2024 YTD Total: $${ytdSales.toLocaleString()}`;
+                    
+                case 4: // Variance
+                    const totalActual = salesData.reduce((sum, s) => sum + s.SalesAmount, 0);
+                    const totalTarget = salesData.reduce((sum, s) => sum + s.TargetSales, 0);
+                    const variance = ((totalActual - totalTarget) / totalTarget * 100).toFixed(1);
+                    return `Variance: ${variance > 0 ? '+' : ''}${variance}% (${totalActual > totalTarget ? 'Above' : 'Below'} Target)`;
+                    
+                case 8: // Repeat customers
+                    const customerOrders = {};
+                    salesData.forEach(s => {
+                        customerOrders[s.CustomerID] = (customerOrders[s.CustomerID] || 0) + 1;
+                    });
+                    const repeatCustomers = Object.keys(customerOrders).filter(c => customerOrders[c] >= 3);
+                    const repeatSales = salesData
+                        .filter(s => repeatCustomers.includes(s.CustomerID))
+                        .reduce((sum, s) => sum + s.SalesAmount, 0);
+                    return `Repeat Customer Sales: $${repeatSales.toLocaleString()} (${repeatCustomers.length} customers)`;
+                    
+                default:
+                    return scenario.sampleResult;
+            }
+        }
+
+        // Populate data tables
+        function populateDataTables() {
+            // Sales table
+            const salesTbody = document.getElementById('sales-tbody');
+            salesData.slice(0, 6).forEach(sale => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${sale.OrderDate}</td>
+                    <td>$${sale.SalesAmount.toLocaleString()}</td>
+                    <td>${sale.CustomerID}</td>
+                    <td>${sale.ProductName}</td>
+                    <td>${sale.Region}</td>
+                `;
+                salesTbody.appendChild(row);
+            });
+
+            // Projects table
+            const projectsTbody = document.getElementById('projects-tbody');
+            projectsData.forEach(project => {
+                const start = new Date(project.StartDate);
+                const end = new Date(project.EndDate);
+                const duration = Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${project.ProjectName}</td>
+                    <td>${project.StartDate}</td>
+                    <td>${project.EndDate}</td>
+                    <td>${duration} days</td>
+                `;
+                projectsTbody.appendChild(row);
+            });
+        }
+
+        // Initialize the app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
